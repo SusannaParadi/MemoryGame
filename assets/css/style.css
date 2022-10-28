@@ -8,7 +8,7 @@ body {
     height: 100vh;
     color: #393336;
     background: rgb(240,236,242);
-    background: radial-gradient(circle, rgba(240,236,242,1) 0%, rgba(238,174,202,1) 93%);
+    background: radial-gradient(circle, rgba(240,236,242,1) 0%, rgba(127, 210, 244) 93%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,23 +16,29 @@ body {
     font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
 }
 
+.text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+}
+
 h1 {
-    margin-bottom: 5px;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 h2 {
     font-size: 2rem;
 }
 
-.js-cards {
+.game {
     display: grid;
-    grid-template-columns: repeat(4, 8.5vw);
-    grid-template-rows: repeat(4, 8.5vw);
-    grid-gap: 4%;
+    grid-template-columns: repeat(4, 10rem);
+    grid-template-rows: repeat(4, 10rem);
+    grid-gap: 2rem;
     perspective: 800px;
     padding-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 2rem;
 }
 
 .card {
@@ -41,7 +47,6 @@ h2 {
     transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: rgb(0, 0, 0, 0.5) 0px 5px 15px;
     cursor: pointer;
-    user-select: none;
 }
 
 .face, .back {
@@ -52,7 +57,7 @@ h2 {
 }
 
 .back {
-    background: #eb7bac;
+    background: rgba(249, 206, 190);
     backface-visibility: hidden;
     
 }
@@ -61,8 +66,41 @@ h2 {
     transform: rotateY(180deg);  
 }
 
+.stars-1,
+.stars-2 {
+    position: fixed;
+    height: 150px;
+}
+
+.stars-1 {
+    top: 1rem;
+    left: 1rem;
+    transform: rotate(15deg);
+}
+
+.stars-2 {
+    bottom: 1rem;
+    right: 1rem;
+    transform: rotate(-15deg);
+}
+
+.button {
+    display: inline-block;
+    background-color: transparent;
+    padding: 1rem 1.5rem;
+    border: solid 1px;
+    border-radius: 4rem;
+    color: black;
+    cursor: pointer;
+    transition: background .3s, color .3s;
+  }
+  
+  .button:hover {
+    background-color: white;
+  }
+
 .modal {
-    display: none;
+    display: block;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -75,10 +113,14 @@ h2 {
 }
 
 .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin: auto;
     height: 80vh;
     width: 80%;
-    background-image: url("assets/img/youwin.jpg");
+    background-image: url("img/youwin.jpg");
     background-position: center;
     background-size: cover;
     border: 5px solid #eda8c8;
@@ -89,7 +131,9 @@ h2 {
 
 .close {
     color: #aaaaaa;
-    float: right;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
     font-size: 4rem;
     font-weight: bold;
     padding: 10px 30px 0 0;
@@ -104,70 +148,77 @@ h2 {
 
 .modal-content p {
     font-size: 9rem;
-    color: #f45c9f;
-    padding-top: 10rem;
+    color: black;
+    padding-top: 5rem;
     text-shadow: 4px 4px 10px #676165;
 }
 
-.again {
-    font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
-    border: 1px solid;
-    color: #393336;
-    background: none;
-    border-radius: 15px;
-    margin-top: 20px;
-    font-size: 2rem;
-    padding: 5px 10px 5px 10px;
-    box-shadow: 4px 4px 10px #676165;
-    transition: 0.3s ease-in-out;
-    cursor: pointer;
-    position: fixed;
-    top: 6vh;
-    right: 10vh;
-}
+/*====================== RESPONSIVE STYLE ================================*/
 
-.again:hover {
-    background-color:#eda8c8;
-    border: 1px solid #393336;
-}
-
-
-@media(max-width: 780px) {
-
-    section {
-        display: grid;
-        grid-template-columns: repeat(4, 7rem);
-        grid-template-rows: repeat(4, 7rem);
+@media  screen and (max-width: 1024px) {
+    .game {
+        grid-template-columns: repeat(4, 6rem);
+        grid-template-rows: repeat(4, 6rem);
         grid-gap: 1rem;
-        perspective: 800px;
-        padding-top: 0;
     }
-
-    h1 {
-        font-size: 2rem;
+    .text {
+        flex-direction: column;
     }
     
-    h2 {
-        font-size: 1rem;
-        margin-bottom: 5px;
+    .modal-content p {
+        font-size: 7rem;
     }
-
-    .again {
-        margin-top: 10%;
-        position: static;
-    }
-
 }
 
-@media(max-width: 540px) {
+@media  screen and (max-width: 580px) {
+    .modal-content p {
+        font-size: 5rem;
+    }
+}
 
-    section {
-        display: grid;
+@media screen and (max-width: 480px) {
+    .game {
         grid-template-columns: repeat(4, 5rem);
         grid-template-rows: repeat(4, 5rem);
         grid-gap: 0.5rem;
         perspective: 800px;
-        padding-top: 0;
+        padding-top: 10px;
+        margin-bottom: 1rem;
     }
+    .stars-1,
+    .stars-2 {
+        position: fixed;
+        height: 70px;
+    }
+    .text {
+        margin-bottom: 2rem;
+    }
+    h1 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    
+    h2 {
+        font-size: 1rem;
+    }
+    .button {
+        padding: .5rem .75rem;
+        margin-bottom: 1rem;
+    }
+    .modal-content p {
+        font-size: 3rem;
+    }
+    
+}
 
+@media  screen and (max-width: 350px) {
+    .game {
+        grid-template-columns: repeat(2, 5rem);
+        grid-template-rows: repeat(8, 5rem);
+        grid-gap: 0.5rem;
+        perspective: 800px;
+        padding-top: 10px;
+        margin-bottom: 1rem;
+    }
+    
 }
