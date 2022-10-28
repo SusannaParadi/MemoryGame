@@ -81,7 +81,6 @@ const checkCards = (e) => {
             flippedCards[0].getAttribute("name") ===
             flippedCards[1].getAttribute("name")
             ) {
-            console.log("match")
             flippedCards.forEach((card) => {
                 card.classList.remove("flipped");
                 card.style.pointerEvents ="none";
@@ -89,7 +88,6 @@ const checkCards = (e) => {
             });
 
         } else {
-            console.log("wrong")
             flippedCards.forEach((card) => {
                 card.classList.remove("flipped");
                 setTimeout(() => card.classList.remove("toggleCard"), 2000);
